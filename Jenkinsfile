@@ -13,9 +13,9 @@ pipeline{
             }
         }
 
-        stage ("Checkout from SCM"){
+        stage("Checkout from SCM"){
             steps {
-                git branch: 'master' , credentialsId: 'github', url
+                git branch: 'master' , credentialsId: 'github', url: 'https://github.com/nguyenle510/lab'
             }
         }
     }
