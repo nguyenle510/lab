@@ -1,6 +1,6 @@
 FROM maven:3.9.9 as build
 WORKDIR /app
-COPY ..
+COPY . .
 RUN mvn clean install
 
 FROM openjdk:17
