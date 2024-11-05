@@ -11,7 +11,7 @@ pipeline{
         APP_NAME = "lab"
         RELEASE = "1.0.0"
         DOCKER_USER = "nguyenle510"
-        DOCKER_PASS = '@Nguyenle43341'
+        DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
