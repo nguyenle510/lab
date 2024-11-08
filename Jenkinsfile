@@ -72,6 +72,14 @@ pipeline{
             }
         }
 
+        stage("Trivy Scan"){
+            steps {
+                script {
+                    sh "trivy image docker_image"
+                }
+            }
+        }
+
     }
 
 }
