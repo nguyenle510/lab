@@ -1,0 +1,89 @@
+Jenkins Server:
+
+follow https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
+
+install nginx on Jenkins: sudo apt install nginx
+configure nginx as revers proxy for jenkins: https://docs.dman.cloud/tutorial-documentation/install-nginx/#checking-your-web-server
+
+sudo vi /etc/nginx/sites-available/jenkins.dev.dman.cloud
+
+upstream jenkins{
+    server 127.0.0.1:8080;
+}
+
+server{
+    listen      80;
+    server_name jenkins.dev.nguyenle.cloud;
+
+    access_log  /var/log/nginx/jenkins.access.log;
+    error_log   /var/log/nginx/jenkins.error.log;
+
+    proxy_buffers 16 64k;
+    proxy_buffer_size 128k;
+
+    location / {
+        proxy_pass  http://jenkins;
+        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+        proxy_redirect off;
+
+        proxy_set_header    Host            $host;
+        proxy_set_header    X-Real-IP       $remote_addr;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    X-Forwarded-Proto https;
+    }
+
+}
+
+Jenkins Agent:
+create user jenkins: sudo adduser jenkins
+sudo usermod -aG sudo jenkins
+
+install java-17
+install docker
+add jenkins user to docker group: sudo usermod -aG docker jenkins
+log as jenkins user
+
+establish connection between control and agent
+
+Pipeline:
+should define tools in jenkinsfile: java/maven
+add global tool on jenkins (maven integ/ pipeline maven, eclipse temurin for jdk)
+add github credential for jenkins
+
+Install SonarQube
+install java-17 : apt install openjdk-17-jre 
+install file zip sonarqube
+cd into /bin/linux..
+./sh console
+
+access http://:9000
+admin/admin => new pass: @LttNguy3n123
+token: sqa_e4dfb1e34980ab4e0fffbf3f0570e7a9f454c8e0
+
+add sonar plugin into jenkins (sonarqube scanner, sonar quality gate, quality gates)
+add credential sonar into jenkins (secret text with token from sonarqube)
+add sonar installation in tools
+configure sonar (URL, credential) in systemconfig
+Add webhook on sonar to prevent the hung 
+
+Build and push image to docker hub:
+add docker plugins (docker commons, pipeline. API, build steps, cloudbees docekr)
+
+install docker on jenkins agent
+start docker (only use for docker in docker): dockerd
+
+
+Install argocd on k8s
+create deployment and service yaml on git 
+create an application yaml which will integrate argocd with git repo
+then argocd will automate apply deployment and service yaml files
+access argocd UI to monitor
+
+
+
+
+
+
+
+
+
