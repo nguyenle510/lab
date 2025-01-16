@@ -59,6 +59,9 @@ pipeline{
         }
 
         stage("Build Docker Image"){
+            agent{
+                label "docker-agent"
+            }
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
@@ -69,6 +72,9 @@ pipeline{
         }
 
         stage("Push Docker Image"){
+            agent{
+                label "docker-agent"
+            }
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
