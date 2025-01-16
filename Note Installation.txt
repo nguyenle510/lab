@@ -42,6 +42,7 @@ install java-17
 install docker
 add jenkins user to docker group: sudo usermod -aG docker jenkins
 log as jenkins user
+create file authorized_keys in ~/.ssh of jenkins user then add pubkey of jenkins server
 
 establish connection between control and agent
 
