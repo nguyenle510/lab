@@ -88,8 +88,10 @@ pipeline{
         stage("ssh remote"){
             steps {
                 sshagent(['ssh-remote']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l root 54.151.172.98'
-                    sh 'docker run -d --name lab-deploy -p 8080:8080 nguyenle510/lab:latest'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root 54.151.172.98' << EOF 
+                    docker run -d --name lab-deploy -p 8080:8080 nguyenle510/lab:latest
+                    exit 0
+                    << EOF
                 }
             }
         }
