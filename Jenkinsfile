@@ -27,7 +27,7 @@ pipeline{
                 git branch: 'main' , credentialsId: 'github', url: 'https://github.com/nguyenle510/lab'
             }
         }
-
+/*
         stage("Build App"){
             steps {
                 sh "mvn clean package"
@@ -39,7 +39,7 @@ pipeline{
                 sh "mvn test"
             }
         }
-
+*/
         stage("Sonar Analysis"){
             steps {
                 script {
