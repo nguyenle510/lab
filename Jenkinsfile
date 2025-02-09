@@ -39,7 +39,7 @@ pipeline{
             }
         }
         
-/*        stage("Sonar Analysis"){
+*/        stage("Sonar Analysis"){
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonarqube') {
