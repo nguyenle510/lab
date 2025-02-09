@@ -27,6 +27,7 @@ pipeline{
                 git branch: 'main' , credentialsId: 'github', url: 'https://github.com/nguyenle510/lab'
             }
         }
+/*        
         stage("Build App"){
             steps {
                 sh "mvn clean package"
@@ -39,7 +40,7 @@ pipeline{
             }
         }
         
-/*        stage("Sonar Analysis"){
+        stage("Sonar Analysis"){
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonarqube') {
