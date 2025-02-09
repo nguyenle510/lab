@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label "jenkins-agent"
+        label "docker-agent"
     }
     tools{
         jdk 'Java17'
@@ -38,7 +38,8 @@ pipeline{
                 sh "mvn test"
             }
         }
-        stage("Sonar Analysis"){
+        
+/*        stage("Sonar Analysis"){
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonarqube') {
@@ -55,11 +56,8 @@ pipeline{
                 }
             }
         }
-
-/*        stage("Build Docker Image"){
-            agent{
-                label "docker-agent"
-            }
+/*
+        stage("Build Docker Image"){
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
@@ -82,7 +80,7 @@ pipeline{
                 }
             }
         }
-*/
+
         stage("Deploy to Server"){
             steps {
                 sshagent(['ssh-remote']) {
