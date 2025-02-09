@@ -30,10 +30,10 @@ pipeline{
         
         stage("Build App"){
             steps {
-                sh "mvn clean"
+                sh "mvn clean install"
             }
         }
-/*
+        
         stage("Test App"){
             steps {
                 sh "mvn test"
@@ -86,7 +86,6 @@ pipeline{
                 }
             }
         }
-        */
 
     }
 
