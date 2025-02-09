@@ -81,7 +81,7 @@ pipeline{
         stage("Deploy to Server"){
             steps {
                 sshagent(['ssh-remote']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 18.139.208.206 docker run -d --name lab-deploy -p 8080:8080 nguyenle510/lab:latest'
+                    sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 52.221.206.149 docker run -d --name lab-deploy -p 8080:8080 nguyenle510/lab:latest'
                 }
             }
         }
