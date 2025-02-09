@@ -56,8 +56,8 @@ pipeline{
             }
         }
 
-        stage("Build Docker Image"){
-/*            agent{
+/*        stage("Build Docker Image"){
+            agent{
                 label "docker-agent"
             }
             steps {
